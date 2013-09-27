@@ -117,10 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MSG_FILE1_NOT_EXISTS" xml:space="preserve">
+    <value>指定された比較元ファイルが存在しません</value>
+  </data>
+  <data name="MSG_FILE2_NOT_EXISTS" xml:space="preserve">
+    <value>指定された比較先ファイルが存在しません</value>
+  </data>
   <data name="MSG_INPUT_FILE1" xml:space="preserve">
     <value>比較元ファイルを指定してください</value>
   </data>
   <data name="MSG_INPUT_FILE2" xml:space="preserve">
     <value>比較先ファイルを指定してください</value>
+  </data>
+  <data name="MSG_ITEM_TABLE_EMPTY" xml:space="preserve">
+    <value>チェック項目表が空になっています</value>
+  </data>
+  <data name="MSG_ITEM_TABLE_MISS" xml:space="preserve">
+    <value>チェック項目表入力不足！行：{0}、列：{1}</value>
   </data>
 </root>

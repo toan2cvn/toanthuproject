@@ -61,6 +61,24 @@ namespace WindowsFormsApplication2.Properties {
         }
         
         /// <summary>
+        ///   指定された比較元ファイルが存在しません に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MSG_FILE1_NOT_EXISTS {
+            get {
+                return ResourceManager.GetString("MSG_FILE1_NOT_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   指定された比較先ファイルが存在しません に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MSG_FILE2_NOT_EXISTS {
+            get {
+                return ResourceManager.GetString("MSG_FILE2_NOT_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   比較元ファイルを指定してください に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MSG_INPUT_FILE1 {
@@ -75,6 +93,24 @@ namespace WindowsFormsApplication2.Properties {
         internal static string MSG_INPUT_FILE2 {
             get {
                 return ResourceManager.GetString("MSG_INPUT_FILE2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   チェック項目表が空になっています に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MSG_ITEM_TABLE_EMPTY {
+            get {
+                return ResourceManager.GetString("MSG_ITEM_TABLE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   チェック項目表入力不足！行：{0}、列：{1} に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MSG_ITEM_TABLE_MISS {
+            get {
+                return ResourceManager.GetString("MSG_ITEM_TABLE_MISS", resourceCulture);
             }
         }
     }

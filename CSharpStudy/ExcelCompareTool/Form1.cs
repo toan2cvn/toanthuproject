@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WindowsFormsApplication2
 {
@@ -68,12 +69,43 @@ namespace WindowsFormsApplication2
 
         private void btn_run_Click(object sender, EventArgs e)
         {
-            
+            // インプットデータをチェック
+            if (this.CheckInputData() != null)
+            {
+                MessageBox.Show(this, this.CheckInputData(), "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.btn_run.Enabled = true;
+                return;
+            }
+
+            Dictionary<string, object> dataGridCheck = GetDataGridViewData(this.itemTbl);
+            List<int> error = (List<int>)dataGridCheck["error"];
+            if (error != null)
+            {
+                MessageBox.Show(this, string.Format(Properties.Resources.MSG_ITEM_TABLE_MISS, error[0], error[1]), "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.btn_run.Enabled = true;
+                return;
+            }
+
+            List<List<string>> gridData = (List<List<string>>)dataGridCheck["gridData"];
+
+            if (!backgroundWorkerRun.IsBusy)
+            {
+
+                List<object> paramData = new List<object>();
+                paramData.Add(gridData);
+
+                // バックグラウンド処理を開始
+                backgroundWorkerRun.RunWorkerAsync(paramData);
+            }
         }
 
         private void backgroundWorkerRun_DoWork(object sender, DoWorkEventArgs e)
         {
+            BackgroundWorker worker = (BackgroundWorker)sender;
+            List<object> paramData = (List<object>)e.Argument;
 
+            List<List<string>> gridData = (List<List<string>>)paramData[0];
+            MessageBox.Show(gridData.Count.ToString());
         }
 
         /// <summary>
@@ -131,6 +163,89 @@ namespace WindowsFormsApplication2
             {
                 this.btn_cancel.Enabled = false;
             }
+        }
+
+        /// <summary>
+        /// 入力データチェック
+        /// </summary>
+        /// <returns>メッセージ</returns>
+        private string CheckInputData()
+        {
+            if (string.IsNullOrEmpty(this.textBox1.Text))
+            {
+                return Properties.Resources.MSG_INPUT_FILE1;
+            }
+
+            if (string.IsNullOrEmpty(this.textBox2.Text))
+            {
+                return Properties.Resources.MSG_INPUT_FILE2;
+            }
+
+            if (!File.Exists(this.textBox1.Text))
+            {
+                return Properties.Resources.MSG_FILE1_NOT_EXISTS;
+            }
+
+            if (!File.Exists(this.textBox2.Text))
+            {
+                return Properties.Resources.MSG_FILE2_NOT_EXISTS;
+            }
+
+            if (this.itemTbl.Rows.Count == 1)
+            {
+                return Properties.Resources.MSG_ITEM_TABLE_EMPTY;
+            }
+
+            return null;
+        }
+
+        private Dictionary<string, object> GetDataGridViewData(DataGridView itemTbl)
+        {
+            int occRow = -1;
+            int occCell = -1;
+            Dictionary<string, object> rtDic = new Dictionary<string,object>();
+            List<int> error = null;
+            List<List<string>> gridData = new List<List<string>>();
+            List<string> rowData;
+            for (int row = 0; row < itemTbl.Rows.Count - 1; row++)
+            {
+                rowData = new List<string>();
+                for (int cell = 0; cell < itemTbl.Rows[row].Cells.Count - 1; cell++)
+                {
+                    try
+                    {
+                        string value = itemTbl.Rows[row].Cells[cell].Value.ToString();
+                        if (string.IsNullOrEmpty(value))
+                        {
+                            occRow = row;
+                            occCell = cell;
+                            break;
+                        }
+                        else
+                        {
+                            rowData.Add(value);
+                        }
+                    }
+                    catch(Exception)
+                    {
+                        occRow = row;
+                        occCell = cell;
+                        break;
+                    }
+                }
+
+                gridData.Add(rowData);
+            }
+            if (occRow != -1)
+            {
+                error = new List<int>();
+                error.Add(occRow + 1);
+                error.Add(occCell + 1);
+            }
+
+            rtDic.Add("gridData", gridData);
+            rtDic.Add("error", error);
+            return rtDic;
         }
     }
 }
