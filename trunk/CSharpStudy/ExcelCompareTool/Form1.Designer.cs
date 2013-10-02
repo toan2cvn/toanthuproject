@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication2
+﻿namespace ExcelCompareTool
 {
     partial class Form1
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btn_cancel = new System.Windows.Forms.Button();
@@ -47,6 +47,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.resultTbl = new System.Windows.Forms.DataGridView();
+            this.rsNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rsItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rsSheetName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rsArea1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rsArea2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rsType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.difference = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.backgroundWorkerRun = new System.ComponentModel.BackgroundWorker();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,13 +62,6 @@
             this.area2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.type = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.delBtn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.rsNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rsItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rsSheetName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rsArea1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rsArea2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rsType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.difference = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -263,66 +263,6 @@
             this.resultTbl.Size = new System.Drawing.Size(598, 493);
             this.resultTbl.TabIndex = 22;
             // 
-            // backgroundWorkerRun
-            // 
-            this.backgroundWorkerRun.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerRun_DoWork);
-            this.backgroundWorkerRun.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerRun_ProgressChanged);
-            this.backgroundWorkerRun.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerRun_RunWorkerCompleted);
-            // 
-            // No
-            // 
-            this.No.DataPropertyName = "No";
-            this.No.HeaderText = "No";
-            this.No.Name = "No";
-            this.No.Width = 30;
-            // 
-            // itemName
-            // 
-            this.itemName.DataPropertyName = "itemName";
-            this.itemName.HeaderText = "項目名";
-            this.itemName.Name = "itemName";
-            this.itemName.Width = 120;
-            // 
-            // sheetName
-            // 
-            this.sheetName.DataPropertyName = "sheetName";
-            this.sheetName.HeaderText = "シート名";
-            this.sheetName.Name = "sheetName";
-            this.sheetName.Width = 120;
-            // 
-            // area1
-            // 
-            this.area1.HeaderText = "対象列1";
-            this.area1.Name = "area1";
-            this.area1.Width = 80;
-            // 
-            // area2
-            // 
-            this.area2.HeaderText = "対象列2";
-            this.area2.Name = "area2";
-            this.area2.Width = 80;
-            // 
-            // type
-            // 
-            this.type.HeaderText = "タイプ";
-            this.type.Items.AddRange(new object[] {
-            "値",
-            "式"});
-            this.type.Name = "type";
-            this.type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.type.Width = 60;
-            // 
-            // delBtn
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "削除";
-            this.delBtn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.delBtn.HeaderText = "削除";
-            this.delBtn.Name = "delBtn";
-            this.delBtn.Text = "削除";
-            this.delBtn.Width = 65;
-            // 
             // rsNo
             // 
             this.rsNo.HeaderText = "No";
@@ -368,6 +308,66 @@
             this.difference.Name = "difference";
             this.difference.Width = 65;
             // 
+            // backgroundWorkerRun
+            // 
+            this.backgroundWorkerRun.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerRun_DoWork);
+            this.backgroundWorkerRun.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerRun_ProgressChanged);
+            this.backgroundWorkerRun.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerRun_RunWorkerCompleted);
+            // 
+            // No
+            // 
+            this.No.DataPropertyName = "No";
+            this.No.HeaderText = "No";
+            this.No.Name = "No";
+            this.No.Width = 30;
+            // 
+            // itemName
+            // 
+            this.itemName.DataPropertyName = "itemName";
+            this.itemName.HeaderText = "項目名";
+            this.itemName.Name = "itemName";
+            this.itemName.Width = 120;
+            // 
+            // sheetName
+            // 
+            this.sheetName.DataPropertyName = "sheetName";
+            this.sheetName.HeaderText = "シート名";
+            this.sheetName.Name = "sheetName";
+            this.sheetName.Width = 120;
+            // 
+            // area1
+            // 
+            this.area1.HeaderText = "Range1";
+            this.area1.Name = "area1";
+            this.area1.Width = 80;
+            // 
+            // area2
+            // 
+            this.area2.HeaderText = "Range2";
+            this.area2.Name = "area2";
+            this.area2.Width = 80;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "タイプ";
+            this.type.Items.AddRange(new object[] {
+            "値",
+            "式"});
+            this.type.Name = "type";
+            this.type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.type.Width = 60;
+            // 
+            // delBtn
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "削除";
+            this.delBtn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.delBtn.HeaderText = "削除";
+            this.delBtn.Name = "delBtn";
+            this.delBtn.Text = "削除";
+            this.delBtn.Width = 65;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -410,13 +410,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorkerRun;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button btn_cancel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn No;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sheetName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn area1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn area2;
-        private System.Windows.Forms.DataGridViewComboBoxColumn type;
-        private System.Windows.Forms.DataGridViewButtonColumn delBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn rsNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn rsItemName;
         private System.Windows.Forms.DataGridViewTextBoxColumn rsSheetName;
@@ -424,6 +417,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rsArea2;
         private System.Windows.Forms.DataGridViewTextBoxColumn rsType;
         private System.Windows.Forms.DataGridViewComboBoxColumn difference;
+        private System.Windows.Forms.DataGridViewTextBoxColumn No;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sheetName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn area1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn area2;
+        private System.Windows.Forms.DataGridViewComboBoxColumn type;
+        private System.Windows.Forms.DataGridViewButtonColumn delBtn;
 
     }
 }

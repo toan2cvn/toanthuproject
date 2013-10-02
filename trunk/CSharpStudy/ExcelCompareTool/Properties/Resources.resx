@@ -135,4 +135,10 @@
   <data name="MSG_ITEM_TABLE_MISS" xml:space="preserve">
     <value>チェック項目表入力不足！行：{0}、列：{1}</value>
   </data>
+  <data name="TYPE_FORMULA" xml:space="preserve">
+    <value>式</value>
+  </data>
+  <data name="TYPE_VALUE" xml:space="preserve">
+    <value>値</value>
+  </data>
 </root>
