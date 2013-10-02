@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsFormsApplication2.Properties {
+namespace ExcelCompareTool.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace WindowsFormsApplication2.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WindowsFormsApplication2.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ExcelCompareTool.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -111,6 +111,24 @@ namespace WindowsFormsApplication2.Properties {
         internal static string MSG_ITEM_TABLE_MISS {
             get {
                 return ResourceManager.GetString("MSG_ITEM_TABLE_MISS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   式 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TYPE_FORMULA {
+            get {
+                return ResourceManager.GetString("TYPE_FORMULA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   値 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TYPE_VALUE {
+            get {
+                return ResourceManager.GetString("TYPE_VALUE", resourceCulture);
             }
         }
     }

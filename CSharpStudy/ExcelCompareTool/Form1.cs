@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
-namespace WindowsFormsApplication2
+namespace ExcelCompareTool
 {
     public partial class Form1 : Form
     {
@@ -93,6 +93,8 @@ namespace WindowsFormsApplication2
 
                 List<object> paramData = new List<object>();
                 paramData.Add(gridData);
+                paramData.Add(this.textBox1.Text);
+                paramData.Add(this.textBox2.Text);
 
                 // バックグラウンド処理を開始
                 backgroundWorkerRun.RunWorkerAsync(paramData);
@@ -105,6 +107,9 @@ namespace WindowsFormsApplication2
             List<object> paramData = (List<object>)e.Argument;
 
             List<List<string>> gridData = (List<List<string>>)paramData[0];
+            string fileName1 = (string)paramData[1];
+            string fileName2 = (string)paramData[2];
+
             MessageBox.Show(gridData.Count.ToString());
         }
 
@@ -210,7 +215,7 @@ namespace WindowsFormsApplication2
             for (int row = 0; row < itemTbl.Rows.Count - 1; row++)
             {
                 rowData = new List<string>();
-                for (int cell = 0; cell < itemTbl.Rows[row].Cells.Count - 1; cell++)
+                for (int cell = 1; cell < itemTbl.Rows[row].Cells.Count - 1; cell++)
                 {
                     try
                     {
