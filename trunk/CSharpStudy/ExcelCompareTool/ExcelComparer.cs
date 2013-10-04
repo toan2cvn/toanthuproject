@@ -18,9 +18,9 @@ namespace ExcelCompareTool
         private ExcelReader exelReader2 { get; set; }
 
         /// <summary>
-        /// エラーが発生したリスト
+        /// エラー書き込むためのライタ
         /// </summary>
-        private List<List<string>> errorList { get; set; }
+        private CSVWriter csvWriter { get; set; }
 
         /// <summary>
         /// Excel比較
