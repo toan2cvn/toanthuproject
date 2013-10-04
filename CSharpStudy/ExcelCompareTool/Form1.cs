@@ -86,7 +86,7 @@ namespace ExcelCompareTool
                 return;
             }
 
-            List<List<string>> gridData = (List<List<string>>)dataGridCheck["gridData"];
+            List<InputItem> gridData = (List<InputItem>)dataGridCheck["gridData"];
 
             if (!backgroundWorkerRun.IsBusy)
             {
@@ -106,7 +106,7 @@ namespace ExcelCompareTool
             BackgroundWorker worker = (BackgroundWorker)sender;
             List<object> paramData = (List<object>)e.Argument;
 
-            List<List<string>> gridData = (List<List<string>>)paramData[0];
+            List<InputItem> gridData = (List<InputItem>)paramData[0];
             string fileName1 = (string)paramData[1];
             string fileName2 = (string)paramData[2];
 
@@ -210,11 +210,12 @@ namespace ExcelCompareTool
             int occCell = -1;
             Dictionary<string, object> rtDic = new Dictionary<string,object>();
             List<int> error = null;
-            List<List<string>> gridData = new List<List<string>>();
+            List<InputItem> gridData = new List<InputItem>();
             List<string> rowData;
             for (int row = 0; row < itemTbl.Rows.Count - 1; row++)
             {
                 rowData = new List<string>();
+                rowData.Add((row + 1).ToString());
                 for (int cell = 1; cell < itemTbl.Rows[row].Cells.Count - 1; cell++)
                 {
                     try
@@ -239,7 +240,10 @@ namespace ExcelCompareTool
                     }
                 }
 
-                gridData.Add(rowData);
+                if (rowData.Count == itemTbl.ColumnCount - 1)
+                {
+                    gridData.Add(new InputItem(rowData));
+                }
             }
             if (occRow != -1)
             {
