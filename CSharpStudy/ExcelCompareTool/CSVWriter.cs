@@ -22,7 +22,7 @@ namespace ExcelCompareTool
         {
             try
             {
-                writer = new StreamWriter(fileName, false, Encoding.GetEncoding("utf-8"));
+                writer = new StreamWriter(fileName, false, Encoding.GetEncoding("shift-jis"));
                 return true;
             }
             catch (Exception)
@@ -59,7 +59,7 @@ namespace ExcelCompareTool
         public void WriteResultItem(ResultItem result)
         {
             StringBuilder sb = new StringBuilder();
-            if (result.No != null)
+            if (result.No != -1)
             {
                 sb.Append(result.No).Append(',');
             }
@@ -74,7 +74,7 @@ namespace ExcelCompareTool
             sb.Append(result.Cell2).Append(',');
             sb.Append(result.Value2).Append(',');
             sb.Append(result.Type).Append(',');
-            if (result.IsDiff != null)
+            if (result.IsDiff)
             {
                 sb.Append("○");
             }
@@ -93,14 +93,18 @@ namespace ExcelCompareTool
         {
             ResultItem header = new ResultItem
             {
+                No = -1,
                 ItemName = "項目名",
                 SheetName = "シート名",
                 Cell1 = "セル元",
                 Value1 = "値",
                 Cell2 = "セル先",
                 Value2 = "値",
-                Type = "Type"
+                Type = "Type",
+                IsDiff = false
             };
+
+            WriteResultItem(header);
         }
     }
 }
