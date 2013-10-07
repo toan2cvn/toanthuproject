@@ -29,7 +29,7 @@ namespace ExcelCompareTool
         /// <param name="fileName2">比較先ファイル名</param>
         /// <param name="gridData">対象列データ</param>
         /// <returns></returns>
-        public bool CompareExcel(string fileName1, string fileName2, List<List<string>> gridData)
+        public bool CompareExcel(string fileName1, string fileName2, List<InputItem> gridData)
         {
             return false;
         }
